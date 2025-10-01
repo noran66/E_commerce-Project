@@ -45,7 +45,12 @@
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 					<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
-					<li><a class="nav-link" href="{{ url('/cart) }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
+					<li>
+  <a class="nav-link" href="{{ url('/cart') }}">
+    <img src="{{ asset('assets/images/cart.svg') }}">
+  </a>
+</li>
+
 				</ul>
 			</div>
 		</div>
@@ -106,7 +111,7 @@
 
 				<!-- Start Column 3 -->
 				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					<a class="product-item" href="{{ url('/cart) }}">
+					<a class="product-item" href="{{ url('/cart') }}">
 						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
 						<h3 class="product-title">Kruzo Aero Chair</h3>
 						<strong class="product-price">$78.00</strong>

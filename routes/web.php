@@ -17,3 +17,7 @@ Route::get('/shop', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+use App\Http\Controllers\ProductController;
+
+Route::get('/shop', [ProductController::class, 'index'])->name('shop');
+Route::get('/shop/{slug}', [ProductController::class, 'show'])->name('shop.show');

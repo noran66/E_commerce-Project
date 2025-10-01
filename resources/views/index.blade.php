@@ -45,7 +45,13 @@
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 					<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
-					<li><a class="nav-link" href="{{ url('/cart) }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
+					
+					<li>
+<a class="nav-link" href="{{ url('/cart') }}">
+    <img src="{{ asset('assets/images/cart.svg') }}">
+</a>
+</li>
+
 				</ul>
 			</div>
 		</div>
@@ -59,7 +65,7 @@
 			<div class="row justify-content-between">
 				<div class="col-lg-5">
 					<div class="intro-excerpt">
-						<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
+						<h1>Modern Interior <span class="d-block">Design Studio</span></h1>
 						<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
 							vulputate velit imperdiet dolor tempor tristique.</p>
 						<p><a href="{{ url('/shop') }}" class="btn btn-secondary me-2">Shop Now</a>
@@ -106,7 +112,7 @@
 
 				<!-- Start Column 3 -->
 				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					<a class="product-item" href="{{ url('/cart) }}">
+					<a class="product-item" href="{{ url('/cart') }}">
 						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
 						<h3 class="product-title">Kruzo Aero Chair</h3>
 						<strong class="product-price">$78.00</strong>

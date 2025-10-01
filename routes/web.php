@@ -17,7 +17,16 @@ Route::get('/shop', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+<<<<<<< HEAD
 use App\Http\Controllers\ProductController;
 
 Route::get('/shop', [ProductController::class, 'index'])->name('shop');
 Route::get('/shop/{slug}', [ProductController::class, 'show'])->name('shop.show');
+=======
+Route::get('/blog', function () {
+    return view('blog'); 
+});
+Route::get('/service', function () {
+    return view('service'); 
+});
+>>>>>>> e30b950 (fix syntax errors and routes issuse)

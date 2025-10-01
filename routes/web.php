@@ -17,3 +17,9 @@ Route::get('/shop', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/blog', function () {
+    return view('blog'); 
+});
+Route::get('/service', function () {
+    return view('service'); 
+});

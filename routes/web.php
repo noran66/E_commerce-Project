@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\SubscriberController;
 
 Route::get('/', function () {
     return view('index');
@@ -39,5 +39,9 @@ Route::get('/cart', function () {
 
 
 Route::post('/add-to-cart', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
 
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
+
+
+Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');

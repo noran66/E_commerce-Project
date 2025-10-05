@@ -41,6 +41,7 @@
 					<li><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
 					<li><a class="nav-link" href="{{ url('/blog') }}">Blog</a></li>
 					<li><a class="nav-link" href="{{ url('/contact') }}">Contact us</a></li>
+
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -469,11 +470,18 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+					@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+
 					<div class="subscription-form">
 						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}"
 									alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
 
-						<form action="#" class="row g-3">
+						<form action="{{ route('subscribe.store') }}" method="POST" class="row g-3">
+							@csrf
 							<div class="col-auto">
 								<input type="text" class="form-control" placeholder="Enter your name">
 							</div>

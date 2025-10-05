@@ -470,11 +470,7 @@
 
 			<div class="row">
 				<div class="col-lg-8">
-					@if(session('success'))
-					<div class="alert alert-success mt-3">
-						{{ session('success') }}
-					</div>
-					@endif
+					
 
 					<div class="subscription-form">
 						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}"
@@ -483,17 +479,23 @@
 						<form action="{{ route('subscribe.store') }}" method="POST" class="row g-3">
 							@csrf
 							<div class="col-auto">
-								<input type="text" class="form-control" placeholder="Enter your name">
+								<input type="text" name="name" class="form-control" placeholder="Enter your name" required>
 							</div>
 							<div class="col-auto">
-								<input type="email" class="form-control" placeholder="Enter your email">
+								<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
 							</div>
 							<div class="col-auto">
-								<button class="btn btn-primary">
+								<button type="submit" class="btn btn-primary">
 									<span class="fa fa-paper-plane"></span>
 								</button>
 							</div>
-						</form>
+							</form>
+							@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+
 
 					</div>
 				</div>

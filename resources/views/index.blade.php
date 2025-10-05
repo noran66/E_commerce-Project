@@ -470,7 +470,15 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+<<<<<<< HEAD
 					
+=======
+					@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+>>>>>>> f2da78f (Add newsletter subscription backend)
 
 					<div class="subscription-form">
 						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}"

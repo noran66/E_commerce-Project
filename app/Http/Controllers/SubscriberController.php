@@ -10,16 +10,17 @@ class SubscriberController extends Controller
     public function store(Request $request)
     {
         // ✅ التحقق من المدخلات
-        $request->validate([
-            'name' => 'required|string|max:255',
+       $validated = $request->validate([
+            'name'  => 'required|string|min:3|max:50',
             'email' => 'required|email|unique:subscribers,email',
+        ], [
+            'name.required' => 'Please enter your name.',
+            'email.unique' => 'This email is already subscribed!',
         ]);
 
         // ✅ حفظ البيانات
-        Subscriber::create([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
+        
+        Subscriber::create($validated);
 
         // ✅ الرد بعد الحفظ
         return redirect()->back()->with('success', 'Thank you for subscribing!');

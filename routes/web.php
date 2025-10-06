@@ -7,11 +7,11 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SubscriberController;
 
+// الصفحة الرئيسية
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-<<<<<<< HEAD
-=======
+
 
 Route::get('/about', function () {
     return view('about');
@@ -48,4 +48,3 @@ Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name(
 
 
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
->>>>>>> f2da78f (Add newsletter subscription backend)

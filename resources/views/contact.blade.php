@@ -194,22 +194,69 @@
 
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="subscription-form">
-						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
 
-						<form action="#" class="row g-3">
+					
+
+					@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+
+
+					<div class="subscription-form">
+						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}"
+									alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+
+						<form action="{{ route('subscribe.store') }}" method="POST" class="row g-3">
+							@csrf
 							<div class="col-auto">
-								<input type="text" class="form-control" placeholder="Enter your name">
+								<input 
+									type="text" 
+									name="name" 
+									class="form-control @error('name') is-invalid @enderror" 
+									placeholder="Enter your name" 
+									value="{{ old('name') }}"
+									required
+								>
+								@error('name')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+
 							<div class="col-auto">
-								<input type="email" class="form-control" placeholder="Enter your email">
+								<input 
+									type="email" 
+									name="email" 
+									class="form-control @error('email') is-invalid @enderror" 
+									placeholder="Enter your email" 
+									value="{{ old('email') }}"
+									required
+								>
+								@error('email')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+
 							<div class="col-auto">
-								<button class="btn btn-primary">
+								<button type="submit" class="btn btn-primary">
 									<span class="fa fa-paper-plane"></span>
 								</button>
 							</div>
+
+							@if (session('success'))
+								<div class="col-12">
+									<div class="alert alert-success mt-2 mb-0 p-2 text-center">
+										{{ session('success') }}
+									</div>
+								</div>
+							@endif
 						</form>
+
 
 					</div>
 				</div>

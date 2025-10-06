@@ -140,33 +140,54 @@
 							</div>
 						</div>
 
-						<form>
+						<form action="{{ route('contact.store') }}" method="POST">
+    						@csrf
 							<div class="row">
 								<div class="col-6">
 									<div class="form-group">
 										<label class="text-black" for="fname">First name</label>
-										<input type="text" class="form-control" id="fname">
+										<input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" id="fname" value="{{ old('first_name') }}">
+										@error('first_name')
+											<div class="text-danger small mt-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="form-group">
 										<label class="text-black" for="lname">Last name</label>
-										<input type="text" class="form-control" id="lname">
+										<input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" id="lname" value="{{ old('last_name') }}">
+										@error('last_name')
+											<div class="text-danger small mt-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 							</div>
+
 							<div class="form-group">
 								<label class="text-black" for="email">Email address</label>
-								<input type="email" class="form-control" id="email">
+								<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}">
+								@error('email')
+									<div class="text-danger small mt-1">{{ $message }}</div>
+								@enderror
 							</div>
 
 							<div class="form-group mb-5">
 								<label class="text-black" for="message">Message</label>
-								<textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+								<textarea name="message" class="form-control @error('message') is-invalid @enderror" id="message" cols="30" rows="5">{{ old('message') }}</textarea>
+								@error('message')
+									<div class="text-danger small mt-1">{{ $message }}</div>
+								@enderror
 							</div>
 
 							<button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
+
+							@if (session('success'))
+								<div class="alert alert-success mt-3">
+									{{ session('success') }}
+								</div>
+							@endif
 						</form>
+
 
 					</div>
 

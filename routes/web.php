@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\ContactController;
 
 // الصفحة الرئيسية
 Route::get('/', function () {
@@ -48,3 +49,4 @@ Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name(
 
 
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

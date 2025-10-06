@@ -78,7 +78,11 @@
                 <div class="mb-3">
                     <strong>Color:</strong>
                     @foreach($product->colors as $color)
-                    <button class="color-btn" style="background-color: {{ $color->code ?? '#ffffff' }};" data-color="{{ $color->name }}"></button>
+                    <button 
+                        class="color-btn" 
+                        style="background-color: {{ $color->code ?? '#ffffff' }};" 
+                        data-color="{{ $color->name ?? 'Unknown' }}">
+                    </button>
                     @endforeach
                     <input type="hidden" id="selectedColor" name="color" value="">
                 </div>

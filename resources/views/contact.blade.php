@@ -108,7 +108,7 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
-										<p>43 Raymouth Rd. Baltemoer, London 3910</p>
+										<p>Cairo,Egypt</p>
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -121,7 +121,7 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
-										<p>info@yourdomain.com</p>
+										<p>farouksameh105@gmail.com</p>
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -134,7 +134,7 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
-										<p>+1 294 3925 3939</p>
+										<p>01000391557</p>
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -341,7 +341,7 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a hreff="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
+							</script>. All Rights Reserved. &mdash; Designed with love by team2 <!-- License information: https://untree.co/license/ -->
 						</p>
 					</div>
 

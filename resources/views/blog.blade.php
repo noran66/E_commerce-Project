@@ -50,7 +50,11 @@
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+<<<<<<< HEAD
+					<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+=======
 					<li><a class="nav-link" href="/login"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+>>>>>>> origin/develop
 					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
 				</ul>
 			</div>
@@ -316,6 +320,25 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+<<<<<<< HEAD
+					<div class="subscription-form">
+						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+
+						<form action="#" class="row g-3">
+							<div class="col-auto">
+								<input type="text" class="form-control" placeholder="Enter your name">
+							</div>
+							<div class="col-auto">
+								<input type="email" class="form-control" placeholder="Enter your email">
+							</div>
+							<div class="col-auto">
+								<button class="btn btn-primary">
+									<span class="fa fa-paper-plane"></span>
+								</button>
+							</div>
+						</form>
+
+=======
 
 					
 
@@ -380,6 +403,7 @@
 						</form>
 
 
+>>>>>>> origin/develop
 					</div>
 				</div>
 			</div>
@@ -442,7 +466,9 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
+
 							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+
 						</p>
 					</div>
 

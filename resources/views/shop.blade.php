@@ -49,10 +49,25 @@
 					<li><a class="nav-link" href="{{ url('/contact') }}">Contact us</a></li>
 				</ul>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+						<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+						<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
+					</ul>
+				</div>
+=======
+				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+					<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
+				</ul>
+>>>>>>> e30b950 (fix syntax errors and routes issuse)
+=======
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 					<li><a class="nav-link" href="/login"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
 					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
 				</ul>
+>>>>>>> origin/develop
 			</div>
 		</div>
 
@@ -274,6 +289,7 @@
 						</form>
 
 
+
 					</div>
 				</div>
 			</div>
@@ -336,7 +352,9 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
+
 							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+
 					</div>
 
 					<div class="col-lg-6 text-center text-lg-end">

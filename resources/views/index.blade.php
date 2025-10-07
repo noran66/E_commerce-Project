@@ -41,12 +41,30 @@
 					<li><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
 					<li><a class="nav-link" href="{{ url('/blog') }}">Blog</a></li>
 					<li><a class="nav-link" href="{{ url('/contact') }}">Contact us</a></li>
+<<<<<<< HEAD
+				</ul>
+
+				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+					<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+<<<<<<< HEAD
+					
+					<li>
+<a class="nav-link" href="{{ url('/cart') }}">
+    <img src="{{ asset('assets/images/cart.svg') }}">
+</a>
+</li>
+
+=======
+					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
+>>>>>>> e30b950 (fix syntax errors and routes issuse)
+=======
 
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 					<li><a class="nav-link" href="{{ url('/login') }}"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
 					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
+>>>>>>> origin/develop
 				</ul>
 			</div>
 		</div>
@@ -60,7 +78,7 @@
 			<div class="row justify-content-between">
 				<div class="col-lg-5">
 					<div class="intro-excerpt">
-						<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
+						<h1>Modern Interior <span class="d-block">Design Studio</span></h1>
 						<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
 							vulputate velit imperdiet dolor tempor tristique.</p>
 						<p>
@@ -110,7 +128,15 @@
 				<!-- Start Column 3 -->
 				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
 					<a class="product-item" href="{{ url('/cart') }}">
+<<<<<<< HEAD
+<<<<<<< HEAD
+						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
+=======
 						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
+>>>>>>> e30b950 (fix syntax errors and routes issuse)
+=======
+						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
+>>>>>>> origin/develop
 						<h3 class="product-title">Kruzo Aero Chair</h3>
 						<strong class="product-price">$78.00</strong>
 
@@ -597,7 +623,10 @@
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;
 							<script>
 								document.write(new Date().getFullYear());
+
 							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+							<!-- License information: https://untree.co/license/ -->
+
 						</p>
 					</div>
 

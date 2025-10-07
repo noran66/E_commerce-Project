@@ -54,7 +54,9 @@
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+
 					<li><a class="nav-link" href="/login"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+
 					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
 				</ul>
 			</div>
@@ -108,7 +110,11 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
+<<<<<<< HEAD
+										<p>43 Raymouth Rd. Baltemoer, London 3910</p>
+=======
 										<p>Cairo,Egypt</p>
+>>>>>>> origin/develop
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -121,7 +127,11 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
+<<<<<<< HEAD
+										<p>info@yourdomain.com</p>
+=======
 										<p>farouksameh105@gmail.com</p>
+>>>>>>> origin/develop
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -134,27 +144,48 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
+<<<<<<< HEAD
+										<p>+1 294 3925 3939</p>
+=======
 										<p>01000391557</p>
+>>>>>>> origin/develop
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
 						</div>
 
+<<<<<<< HEAD
+						<form>
+=======
 						<form action="{{ route('contact.store') }}" method="POST">
     						@csrf
+>>>>>>> origin/develop
 							<div class="row">
 								<div class="col-6">
 									<div class="form-group">
 										<label class="text-black" for="fname">First name</label>
+<<<<<<< HEAD
+										<input type="text" class="form-control" id="fname">
+=======
 										<input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" id="fname" value="{{ old('first_name') }}">
 										@error('first_name')
 											<div class="text-danger small mt-1">{{ $message }}</div>
 										@enderror
+>>>>>>> origin/develop
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="form-group">
 										<label class="text-black" for="lname">Last name</label>
+<<<<<<< HEAD
+										<input type="text" class="form-control" id="lname">
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="text-black" for="email">Email address</label>
+								<input type="email" class="form-control" id="email">
+=======
 										<input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" id="lname" value="{{ old('last_name') }}">
 										@error('last_name')
 											<div class="text-danger small mt-1">{{ $message }}</div>
@@ -169,10 +200,19 @@
 								@error('email')
 									<div class="text-danger small mt-1">{{ $message }}</div>
 								@enderror
+>>>>>>> origin/develop
 							</div>
 
 							<div class="form-group mb-5">
 								<label class="text-black" for="message">Message</label>
+<<<<<<< HEAD
+								<textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+							</div>
+
+							<button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
+						</form>
+
+=======
 								<textarea name="message" class="form-control @error('message') is-invalid @enderror" id="message" cols="30" rows="5">{{ old('message') }}</textarea>
 								@error('message')
 									<div class="text-danger small mt-1">{{ $message }}</div>
@@ -189,6 +229,7 @@
 						</form>
 
 
+>>>>>>> origin/develop
 					</div>
 
 				</div>
@@ -215,6 +256,25 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+<<<<<<< HEAD
+					<div class="subscription-form">
+						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+
+						<form action="#" class="row g-3">
+							<div class="col-auto">
+								<input type="text" class="form-control" placeholder="Enter your name">
+							</div>
+							<div class="col-auto">
+								<input type="email" class="form-control" placeholder="Enter your email">
+							</div>
+							<div class="col-auto">
+								<button class="btn btn-primary">
+									<span class="fa fa-paper-plane"></span>
+								</button>
+							</div>
+						</form>
+
+=======
 
 					
 
@@ -279,6 +339,7 @@
 						</form>
 
 
+>>>>>>> origin/develop
 					</div>
 				</div>
 			</div>
@@ -341,7 +402,9 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
+
 							</script>. All Rights Reserved. &mdash; Designed with love by team2 <!-- License information: https://untree.co/license/ -->
+
 						</p>
 					</div>
 

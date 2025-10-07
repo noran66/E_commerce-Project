@@ -271,6 +271,39 @@
 						</div>
 					</div>
 
+<<<<<<< HEAD
+					<div class="row mb-5">
+						<div class="col-md-12">
+							<h2 class="h3 mb-3 text-black">Your Order</h2>
+							<div class="p-3 p-lg-5 border bg-white">
+								<table class="table site-block-order-table mb-5">
+									<thead>
+										<th>Product</th>
+										<th>Total</th>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
+											<td>$250.00</td>
+										</tr>
+										<tr>
+											<td>Polo Shirt <strong class="mx-2">x</strong> 1</td>
+											<td>$100.00</td>
+										</tr>
+										<tr>
+											<td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+											<td class="text-black">$350.00</td>
+										</tr>
+										<tr>
+											<td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+											<td class="text-black font-weight-bold"><strong>$350.00</strong></td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div class="border p-3 mb-3">
+									<h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
+=======
 					<div class="container my-5">
     <div class="row mb-5">
         <div class="col-md-12">
@@ -303,6 +336,7 @@
                             Direct Bank Transfer
                         </a>
                     </h3>
+>>>>>>> origin/develop
 
 									<div class="collapse" id="collapsebank">
 										<div class="py-2">
@@ -355,6 +389,25 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+<<<<<<< HEAD
+					<div class="subscription-form">
+						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+
+						<form action="#" class="row g-3">
+							<div class="col-auto">
+								<input type="text" class="form-control" placeholder="Enter your name">
+							</div>
+							<div class="col-auto">
+								<input type="email" class="form-control" placeholder="Enter your email">
+							</div>
+							<div class="col-auto">
+								<button class="btn btn-primary">
+									<span class="fa fa-paper-plane"></span>
+								</button>
+							</div>
+						</form>
+
+=======
 
 					
 
@@ -415,6 +468,7 @@
 						</form>
 
 
+>>>>>>> origin/develop
 					</div>
 				</div>
 			</div>
@@ -477,7 +531,9 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
+
 							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+
 						</p>
 					</div>
 

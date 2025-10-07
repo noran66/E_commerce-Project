@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 // الصفحة الرئيسية
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ProductController::class, 'home']);
 
 
 Route::get('/about', function () {
@@ -31,26 +29,24 @@ Route::get('/contact', function () {
 Route::get('/blog', function () {
     return view('blog'); 
 });
-Route::get('/service', function () {
-    return view('service'); 
-});
+Route::get('/service', [ProductController::class, 'service']);
 
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 
 Route::get('/checkout/{product}', [CheckoutController::class, 'index'])->name('checkout');
 
-Route::get('/cart', function () {
-    return view('cart'); 
-});
+// Route::get('/cart', function () {
+//     return view('cart'); 
+// });
 
 
 Route::post('/add-to-cart', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
+// Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart.index');
 
-
+Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
@@ -66,4 +62,13 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth')->get('/user-dashboard', [AuthController::class, 'dashboard'])->name('user.dashboard');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove.get');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+
+Route::get('/shop', [ProductController::class, 'shop']);
+
+Route::get('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])
+    ->name('cart.remove.get');
+
 

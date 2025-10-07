@@ -82,61 +82,18 @@
 	<!-- Start Product Section -->
 	<div class="product-section">
 		<div class="container">
-			<div class="row">
-
-				<!-- Start Column 1 -->
-				<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-					<h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-					<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
-						vulputate velit imperdiet dolor tempor tristique. </p>
-					<p><a href="#" class="btn">Explore</a></p>
-				</div>
-				<!-- End Column 1 -->
-
-				<!-- Start Column 2 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					<a class="product-item" href="cart.html">
-						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 2 -->
-
-				<!-- Start Column 3 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					<a class="product-item" href="{{ url('/cart') }}">
-						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Kruzo Aero Chair</h3>
-						<strong class="product-price">$78.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 3 -->
-
-				<!-- Start Column 4 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-					<a class="product-item" href="cart.html">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Ergonomic Chair</h3>
-						<strong class="product-price">$43.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 4 -->
-
+    <div class="row">
+		@foreach($products as $product)
+			<div class="col-12 col-md-4 col-lg-3 mb-5 d-flex align-items-stretch">
+				<a class="product-item w-100 d-flex flex-column align-items-center text-center" href="{{ route('product.show', $product->id) }}">
+					<img src="{{ asset('assets/images/' . $product->image) }}" class="img-fluid product-thumbnail mb-3" style="max-height:220px;">
+					<h3 class="product-title mb-1" style="font-size:1.2rem;">{{ $product->name }}</h3>
+					<strong class="product-price mb-2" style="font-size:1.2rem;">${{ $product->price }}</strong>
+				</a>
 			</div>
-		</div>
+		@endforeach
+    </div>
+</div>
 	</div>
 	<!-- End Product Section -->
 
@@ -239,52 +196,26 @@
 	<!-- End We Help Section -->
 
 	<!-- Start Popular Product -->
-	<div class="popular-product">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-					<div class="product-item-sm d-flex">
-						<div class="thumbnail">
-							<img src="{{ asset('assets\images\product-1.png') }}" alt="Image" class="img-fluid">
-						</div>
-						<div class="pt-3">
-							<h3>Nordic Chair</h3>
-							<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-							<p><a href="#">Read More</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-					<div class="product-item-sm d-flex">
-						<div class="thumbnail">
-							<img src="{{ asset('assets\images\product-2.png') }}" alt="Image" class="img-fluid">
-						</div>
-						<div class="pt-3">
-							<h3>Kruzo Aero Chair</h3>
-							<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-							<p><a href="#">Read More</a></p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-					<div class="product-item-sm d-flex">
-						<div class="thumbnail">
-							<img src="{{ asset('assets/images/product-3.png') }}" alt="Image" class="img-fluid">
-						</div>
-						<div class="pt-3">
-							<h3>Ergonomic Chair</h3>
-							<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-							<p><a href="#">Read More</a></p>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
+<div class="popular-product">
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach($products as $product)
+                <div class="col-12 col-sm-6 col-md-3 mb-4 d-flex align-items-stretch">
+                    <div class="product-item-sm d-flex flex-column align-items-center">
+                        <div class="thumbnail mb-3">
+                            <img src="{{ asset('assets/images/' . $product->image) }}" alt="Image" class="img-fluid" style="max-height:120px;">
+                        </div>
+                        <div class="pt-3 text-center">
+                            <h3>{{ $product->name }}</h3>
+                            <p>{{ $product->description ?? 'Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio' }}</p>
+                            <p><a href="{{ route('product.show', $product->id) }}">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 	<!-- End Popular Product -->
 
 	<!-- Start Testimonial Slider -->

@@ -100,8 +100,8 @@
             @empty
                 <div class="col-12">
                     <div class="alert alert-warning text-center">
-                        لا يوجد منتجات حاليا!
-                    </div>
+                        No products available.
+					</div>
                 </div>
             @endforelse
         </div>

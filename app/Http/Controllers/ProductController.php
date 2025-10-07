@@ -18,5 +18,15 @@ class ProductController extends Controller
     $products = \App\Models\Product::all();
     return view('shop', compact('products'));
 }
+public function home()
+{
+    $products = \App\Models\Product::all();
+    return view('index', compact('products'));
+}
+public function service()
+{
+    $products = \App\Models\Product::all();
+    return view('service', compact('products'));
+}
 
 }

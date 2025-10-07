@@ -62,8 +62,9 @@ class AuthController extends Controller
     // صفحة Dashboard
     public function dashboard()
     {
-        $user = Auth::user();
-        return view('user-dashboard', compact('user'));
+        $user = auth()->user();
+        $cartItems = $user->cartItems; // كل عناصر الكارت الخاصة بالمستخدم
+        return view('user-dashboard', compact('user', 'cartItems'));
     }
 
     // تسجيل الخروج

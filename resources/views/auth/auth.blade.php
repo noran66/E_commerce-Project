@@ -1,56 +1,55 @@
-<!-- /*
-* Bootstrap 5
-* Template Name: Furni
-* Template Author: Untree.co
-* Template URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="ar">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="Untree.co">
-	<link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="bootstrap, bootstrap4" />
 
 	<!-- Bootstrap CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-	<title>Furni for Furniture and Interior Design Websites </title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <title>Login / Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f5f5f5; }
+    .card { width: 400px; margin: auto; margin-top: 80px; }
+    .toggle-btn { cursor: pointer; color: #0d6efd; text-decoration: underline; }
+  </style>
 </head>
-
 <body>
 
-	<!-- Start Header/Navigation -->
-	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+    <!-- Start Header/Navigation -->
+	<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark" arial-label="Furni navigation bar">
 
 		<div class="container">
 			<a class="navbar-brand" href="{{ url('/') }}">Furni<span>.</span></a>
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+				aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarsFurni">
 				<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-					<li class="nav-item ">
+					<li class="nav-item active">
 						<a class="nav-link" href="{{ url('/') }}">Home</a>
 					</li>
-					<li class="active"><a class="nav-link" href="{{ url('/shop') }}">Shop</a></li>
+					<li><a class="nav-link" href="{{ url('/shop') }}">Shop</a></li>
 					<li><a class="nav-link" href="{{ url('/about') }}">About us</a></li>
 					<li><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
 					<li><a class="nav-link" href="{{ url('/blog') }}">Blog</a></li>
 					<li><a class="nav-link" href="{{ url('/contact') }}">Contact us</a></li>
+
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-					<li><a class="nav-link" href="/login"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+					<li><a class="nav-link" href="{{ url('/auth') }}"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
 					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
 				</ul>
 			</div>
@@ -59,17 +58,14 @@
 	</nav>
 	<!-- End Header/Navigation -->
 
-	<!-- Start Hero Section -->
+    <!-- Start Hero Section -->
 	<div class="hero">
-		<div class="container">
+		<div class="container" style="max-height: 100px;">
 			<div class="row justify-content-between">
 				<div class="col-lg-5">
 					<div class="intro-excerpt">
-						<h1>Shop</h1>
+						<h1>Login/Register <span clsas="d-block"></span></h1>
 					</div>
-				</div>
-				<div class="col-lg-7">
-
 				</div>
 			</div>
 		</div>
@@ -77,130 +73,62 @@
 	<!-- End Hero Section -->
 
 
+  <div class="card shadow p-4">
+    <h3 class="text-center mb-4" id="form-title">Login</h3>
 
-	<div class="untree_co-section product-section before-footer-section">
-		<div class="container">
-			<div class="row">
+    @if (session('error'))
+      <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    @if (session('success'))
+      <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-				<!-- Start Column 1 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
+    {{-- Login Form --}}
+    <form id="login-form" method="POST" action="{{ route('login') }}">
+      @csrf
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+      <p class="mt-3 text-center">Don't have an account?
+        <span class="toggle-btn" onclick="toggleForms()">Register</span>
+      </p>
+    </form>
 
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 1 -->
-
-				<!-- Start Column 2 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 2 -->
-
-				<!-- Start Column 3 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Kruzo Aero Chair</h3>
-						<strong class="product-price">$78.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 3 -->
-
-				<!-- Start Column 4 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Ergonomic Chair</h3>
-						<strong class="product-price">$43.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 4 -->
+    {{-- Register Form --}}
+    <form id="register-form" method="POST" action="{{ route('register') }}" style="display: none;">
+      @csrf
+      <div class="mb-3">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Confirm password</label>
+        <input type="password" name="password_confirmation" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Register</button>
+      <p class="mt-3 text-center">Already have an account?
+        <span class="toggle-btn" onclick="toggleForms()">Login</span>
+      </p>
+    </form>
+  </div>
 
 
-				<!-- Start Column 1 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
 
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 1 -->
-
-				<!-- Start Column 2 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 2 -->
-
-				<!-- Start Column 3 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Kruzo Aero Chair</h3>
-						<strong class="product-price">$78.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 3 -->
-
-				<!-- Start Column 4 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Ergonomic Chair</h3>
-						<strong class="product-price">$43.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 4 -->
-
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Start Footer Section -->
+  <!-- Start Footer Section -->
 	<footer class="footer-section">
 		<div class="container relative">
 
@@ -272,8 +200,6 @@
 								</div>
 							@endif
 						</form>
-
-
 					</div>
 				</div>
 			</div>
@@ -281,7 +207,9 @@
 			<div class="row g-5 mb-5">
 				<div class="col-lg-4">
 					<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
-					<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
+					<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus
+						malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
+						Pellentesque habitant</p>
 
 					<ul class="list-unstyled custom-social">
 						<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
@@ -334,9 +262,11 @@
 			<div class="border-top copyright">
 				<div class="row pt-4">
 					<div class="col-lg-6">
-						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
+						<p class="mb-2 text-center text-lg-start">Copyright &copy;
+							<script>
 								document.write(new Date().getFullYear());
 							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+						</p>
 					</div>
 
 					<div class="col-lg-6 text-center text-lg-end">
@@ -359,4 +289,25 @@
 	<script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 
+</html>
+
+
+  <script>
+    function toggleForms() {
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const title = document.getElementById('form-title');
+
+      if (loginForm.style.display === 'none') {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        title.innerText = 'Login';
+      } else {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        title.innerText = 'Register';
+      }
+    }
+  </script>
+</body>
 </html>

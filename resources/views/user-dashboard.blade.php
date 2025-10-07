@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Furni</title>
+<title>User Dashboard</title>
 <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -12,68 +12,59 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: #f5f5f5;
+        background: #f2f2f2;
         margin: 0;
+        padding: 0;
     }
-    .auth-container {
-        max-width: 400px;
+    .dashboard-container {
+        display: flex;
+        max-width: 1200px;
         margin: 50px auto;
-        background: #fff;
-        padding: 40px 30px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        gap: 30px;
     }
-    .auth-container h2 {
-        text-align: center;
-        margin-bottom: 25px;
-        font-weight: 700;
+    .profile, .cart {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        flex: 1;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .profile h2, .cart h2 {
+        margin-bottom: 20px;
         color: #333;
     }
-    .auth-container input[type="email"],
-    .auth-container input[type="password"] {
-        width: 100%;
-        padding: 12px 15px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 14px;
-    }
-    .auth-container button {
-        width: 100%;
-        padding: 12px;
-        background: #3b5d50;
-        color: #fff;
-        font-size: 16px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-    .auth-container button:hover {
-        background: #2d453b;
-    }
-    .auth-container .links {
-        text-align: center;
-        margin-top: 15px;
-    }
-    .auth-container .links a {
-        color: #3b5d50;
-        text-decoration: none;
-    }
-    .auth-container .links a:hover {
-        text-decoration: underline;
-    }
-    .error {
-        color: red;
-        font-size: 14px;
+    .profile p {
         margin-bottom: 10px;
-        text-align: center;
+        font-size: 16px;
+    }
+    .cart table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .cart table th, .cart table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    .cart table th {
+        background: #f4f4f4;
+    }
+    button {
+        padding: 10px 20px;
+        background: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #c82333;
     }
 </style>
 </head>
 <body>
 
-<!-- Navbar -->
+  <!-- Navbar -->
 <nav class="custom-navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">Furni<span>.</span></a>
@@ -100,26 +91,49 @@
     </div>
 </nav>
 
-<!-- Login Form -->
-<div class="auth-container">
-    <h2>Login</h2>
 
-    @if($errors->any())
-        <div class="error">{{ $errors->first() }}</div>
-    @endif
+<div class="dashboard-container">
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-
-    <div class="links">
-        <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
+    <div class="profile">
+        <h2>Profile Information</h2>
+        <p><strong>Name:</strong> {{ $user->name }}</p>
+        <p><strong>Email:</strong> {{ $user->email }}</p>
+        <p><strong>Member since:</strong> {{ $user->created_at->format('d-m-Y') }}</p>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
     </div>
-</div>
 
+    <div class="cart">
+        <h2>Your Cart</h2>
+        @if($cartItems->count() > 0)
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($cartItems as $item)
+                    <tr>
+                        <td>{{ $item->product_name }}</td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>${{ number_format($item->price, 2) }}</td>
+                        <td>${{ number_format($item->price * $item->quantity, 2) }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <p>Your cart is empty.</p>
+        @endif
+    </div>
+
+</div>
 
 	<!-- Start Footer Section -->
 	<footer class="footer-section">
@@ -279,5 +293,6 @@
 <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
 </body>
 </html>

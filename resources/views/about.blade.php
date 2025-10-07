@@ -49,7 +49,7 @@
 					<li><a class="nav-link" href="{{ url('/contact') }}">Contact us</a></li>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="/login"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+						<li><a class="nav-link" href="{{ auth()->check() ? route('user.dashboard') : route('login') }}"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
 						<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
 					</ul>
 			</div>

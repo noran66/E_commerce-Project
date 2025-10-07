@@ -271,6 +271,7 @@
 						</div>
 					</div>
 
+<<<<<<< HEAD
 					<div class="row mb-5">
 						<div class="col-md-12">
 							<h2 class="h3 mb-3 text-black">Your Order</h2>
@@ -302,6 +303,40 @@
 
 								<div class="border p-3 mb-3">
 									<h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
+=======
+					<div class="container my-5">
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Your Order</h2>
+            <div class="p-3 p-lg-5 border bg-white">
+                <table class="table site-block-order-table mb-5">
+                    <thead>
+                        <th>Product</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $product->name }} <strong class="mx-2">x</strong> {{ $quantity }}</td>
+                            <td>${{ $product->price * $quantity }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                            <td class="text-black">${{ $product->price * $quantity }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                            <td class="text-black font-weight-bold"><strong>${{ $product->price * $quantity }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+								<div class="border p-3 mb-3">
+                    <h3 class="h6 mb-0">
+                        <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">
+                            Direct Bank Transfer
+                        </a>
+                    </h3>
+>>>>>>> origin/develop
 
 									<div class="collapse" id="collapsebank">
 										<div class="py-2">
@@ -354,6 +389,7 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+<<<<<<< HEAD
 					<div class="subscription-form">
 						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
 
@@ -371,6 +407,68 @@
 							</div>
 						</form>
 
+=======
+
+					
+
+					@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+
+
+					<form action="{{ route('subscribe.store') }}" method="POST" class="row g-3">
+							@csrf
+							<div class="col-auto">
+								<input 
+									type="text" 
+									name="name" 
+									class="form-control @error('name') is-invalid @enderror" 
+									placeholder="Enter your name" 
+									value="{{ old('name') }}"
+									required
+								>
+								@error('name')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
+							</div>
+
+							<div class="col-auto">
+								<input 
+									type="email" 
+									name="email" 
+									class="form-control @error('email') is-invalid @enderror" 
+									placeholder="Enter your email" 
+									value="{{ old('email') }}"
+									required
+								>
+								@error('email')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
+							</div>
+
+							<div class="col-auto">
+								<button type="submit" class="btn btn-primary">
+									<span class="fa fa-paper-plane"></span>
+								</button>
+							</div>
+
+							@if (session('success'))
+								<div class="col-12">
+									<div class="alert alert-success mt-2 mb-0 p-2 text-center">
+										{{ session('success') }}
+									</div>
+								</div>
+							@endif
+						</form>
+
+
+>>>>>>> origin/develop
 					</div>
 				</div>
 			</div>
@@ -433,7 +531,9 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a hreff="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
+
+							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+
 						</p>
 					</div>
 

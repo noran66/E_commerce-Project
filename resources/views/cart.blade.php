@@ -120,50 +120,50 @@
                     <form action="{{ route('cart.update') }}" method="POST">
                         @csrf
                         <table class="table align-middle text-center">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Remove</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($cartItems as $item)
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('assets/images/' . $item->product->image) }}" 
-                                                 alt="{{ $item->product->name }}" 
-                                                 class="img-fluid rounded" 
-                                                 style="max-width: 70px;">
-                                        </td>
-                                        <td class="text-start">
-                                            <strong>{{ $item->product->name }}</strong>
-                                        </td>
-                                        <td>${{ number_format($item->product->price, 2) }}</td>
-                                        <td>
-                                            <input type="hidden" name="products[{{ $item->product->id }}][id]" value="{{ $item->product->id }}">
-                                            <input type="number" 
-                                                   name="products[{{ $item->product->id }}][quantity]" 
-                                                   value="{{ $item->quantity }}" 
-                                                   min="1"
-                                                   class="form-control text-center mx-auto" 
-                                                   style="width:80px;">
-                                        </td>
-                                        <td>${{ number_format($item->product->price * $item->quantity, 2) }}</td>
-                                        <td>
-                                            {{-- بدل form داخل form --}}
-                                            <a href="{{ route('cart.remove.get', $item->product->id) }}" 
-												class="btn btn-danger rounded-pill px-3 py-1"
-												onclick="return confirm('Remove this item?')">
-												🗑 Remove
-											</a>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+    <thead class="table-light">
+        <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($cartItems as $item)
+            <tr>
+                <td>
+                    <img src="{{ asset('assets/images/' . $item->product->image) }}" 
+                         alt="{{ $item->product->name }}" 
+                         class="img-fluid rounded" 
+                         style="max-width: 70px;">
+                </td>
+                <td class="text-start">
+                    <strong>{{ $item->product->name }}</strong>
+                </td>
+                <td>${{ number_format($item->product->price, 2) }}</td>
+                <td>
+                    <input type="hidden" name="products[{{ $item->id }}][id]" value="{{ $item->id }}">
+                    <input type="number" 
+                           name="products[{{ $item->id }}][quantity]" 
+                           value="{{ $item->quantity }}" 
+                           min="1"
+                           class="form-control text-center mx-auto" 
+                           style="width:80px;">
+                </td>
+                <td>${{ number_format($item->product->price * $item->quantity, 2) }}</td>
+                <td>
+                    <a href="{{ route('cart.remove.get', $item->id) }}" 
+                        class="btn btn-danger rounded-pill px-3 py-1"
+                        onclick="return confirm('Remove this item?')">
+                        🗑 Remove
+                    </a>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
                         <div class="d-flex justify-content-between align-items-center mt-4">
 							<a href="{{ url('/shop') }}" 

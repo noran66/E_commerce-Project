@@ -106,32 +106,32 @@
     </div>
 
     <div class="cart">
-        <h2>Your Cart</h2>
-        @if($cartItems->count() > 0)
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($cartItems as $item)
-                    <tr>
-                        <td>{{ $item->product_name }}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>${{ number_format($item->price, 2) }}</td>
-                        <td>${{ number_format($item->price * $item->quantity, 2) }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>Your cart is empty.</p>
-        @endif
-    </div>
+    <h2>Your Cart</h2>
+    @if($cartItems->count() > 0)
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($cartItems as $item)
+                <tr>
+                    <td>{{ $item->product->name }}</td>
+                    <td>{{ $item->quantity }}</td>
+                    <td>${{ number_format($item->product->price, 2) }}</td>
+                    <td>${{ number_format($item->product->price * $item->quantity, 2) }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <p>Your cart is empty.</p>
+    @endif
+</div>
 
 </div>
 

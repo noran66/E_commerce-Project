@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\CartItem; 
 use App\Models\User;
 
 class AuthController extends Controller
@@ -15,23 +16,27 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // تسجيل الدخول
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+   public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/user-dashboard');
-        }
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
+        
+        // تحويل سلة Session إلى قاعدة بيانات
+        $cartController = new CartController();
+        $cartController->migrateSessionToDatabase();
 
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ]);
+        return redirect()->intended('/');
     }
+
+    return back()->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+    ]);
+}
 
     // عرض صفحة التسجيل
     public function showRegisterForm()
@@ -61,11 +66,14 @@ class AuthController extends Controller
 
     // صفحة Dashboard
     public function dashboard()
-    {
-        $user = auth()->user();
-        $cartItems = $user->cartItems; // كل عناصر الكارت الخاصة بالمستخدم
-        return view('user-dashboard', compact('user', 'cartItems'));
-    }
+{
+    $user = Auth::user();
+    $cartItems = CartItem::with('product')
+        ->where('user_id', $user->id)
+        ->get();
+    
+    return view('user-dashboard', compact('user', 'cartItems'));
+}
 
     // تسجيل الخروج
     public function logout(Request $request)

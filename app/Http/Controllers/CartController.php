@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\DB;
-
 
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -12,60 +10,225 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function add(Request $request)
-{
-    $cart = session()->get('cart', []);
-    $productId = $request->input('product_id');
-    $quantity = $request->input('quantity', 1);
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1'
+        ]);
 
-    if(isset($cart[$productId])) {
-        $cart[$productId] += $quantity;
-    } else {
-        $cart[$productId] = $quantity;
-    }
-
-    session()->put('cart', $cart);
-
-    return redirect()->route('cart.index')->with('success', 'Product added to cart!');
-}
-
-   public function index()
-{
-    // إذا كنت تستخدم session
-    $cart = session()->get('cart', []);
-    $cartItems = [];
-
-    foreach ($cart as $productId => $quantity) {
-        $product = \App\Models\Product::find($productId);
-        if ($product) {
-            $cartItems[] = (object)[
-                'product' => $product,
-                'quantity' => $quantity,
-            ];
+        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
+        if (Auth::check()) {
+            return $this->addToDatabaseCart($request);
+        } else {
+            // إذا كان زائر، استخدم الـ Session
+            return $this->addToSessionCart($request);
         }
     }
 
-    return view('cart', compact('cartItems'));
-}
-public function remove($id)
-{
-    $cart = session()->get('cart', []);
-    unset($cart[$id]);
-    session()->put('cart', $cart);
-    return redirect()->route('cart.index')->with('success', 'Product removed from cart!');
-}
-public function update(Request $request)
-{
-    $cart = session()->get('cart', []);
+    private function addToDatabaseCart(Request $request)
+    {
+        $user = Auth::user();
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity', 1);
 
-    if ($request->has('products')) {
-        foreach ($request->products as $id => $data) {
-            if (isset($cart[$id])) {
-                $cart[$id] = $data['quantity'];
+        // البحث عن عنصر موجود في السلة
+        $existingCartItem = CartItem::where('user_id', $user->id)
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($existingCartItem) {
+            // تحديث الكمية إذا كان المنتج موجود بالفعل
+            $existingCartItem->quantity += $quantity;
+            $existingCartItem->save();
+        } else {
+            // إضافة منتج جديد إلى السلة
+            $product = Product::find($productId);
+            
+            CartItem::create([
+                'user_id' => $user->id,
+                'product_id' => $productId,
+                'quantity' => $quantity,
+                'price' => $product->price
+            ]);
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Product added to cart!');
+    }
+
+    private function addToSessionCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        $productId = $request->input('product_id');
+        $quantity = $request->input('quantity', 1);
+
+        if(isset($cart[$productId])) {
+            $cart[$productId] += $quantity;
+        } else {
+            $cart[$productId] = $quantity;
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->route('cart.index')->with('success', 'Product added to cart!');
+    }
+
+    public function index()
+    {
+        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
+        if (Auth::check()) {
+            return $this->showDatabaseCart();
+        } else {
+            // إذا كان زائر، استخدم الـ Session
+            return $this->showSessionCart();
+        }
+    }
+
+    private function showDatabaseCart()
+    {
+        $user = Auth::user();
+        $cartItems = CartItem::with('product')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('cart', compact('cartItems'));
+    }
+
+    private function showSessionCart()
+    {
+        $cart = session()->get('cart', []);
+        $cartItems = [];
+
+        foreach ($cart as $productId => $quantity) {
+            $product = Product::find($productId);
+            if ($product) {
+                $cartItems[] = (object)[
+                    'id' => $productId, // استخدام productId كمعرف مؤقت للـ Session
+                    'product' => $product,
+                    'quantity' => $quantity,
+                ];
             }
         }
-        session()->put('cart', $cart);
+
+        return view('cart', compact('cartItems'));
     }
 
-    return redirect()->route('cart.index')->with('success', 'Cart updated successfully!');
-}
+    public function remove($id)
+    {
+        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
+        if (Auth::check()) {
+            return $this->removeFromDatabaseCart($id);
+        } else {
+            // إذا كان زائر، استخدم الـ Session
+            return $this->removeFromSessionCart($id);
+        }
+    }
+
+    private function removeFromDatabaseCart($id)
+    {
+        $user = Auth::user();
+        
+        $cartItem = CartItem::where('user_id', $user->id)
+            ->where('id', $id)
+            ->firstOrFail();
+
+        $cartItem->delete();
+
+        return redirect()->route('cart.index')->with('success', 'Product removed from cart!');
+    }
+
+    private function removeFromSessionCart($id)
+    {
+        $cart = session()->get('cart', []);
+        unset($cart[$id]);
+        session()->put('cart', $cart);
+        return redirect()->route('cart.index')->with('success', 'Product removed from cart!');
+    }
+
+    public function update(Request $request)
+    {
+        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
+        if (Auth::check()) {
+            return $this->updateDatabaseCart($request);
+        } else {
+            // إذا كان زائر، استخدم الـ Session
+            return $this->updateSessionCart($request);
+        }
+    }
+
+    private function updateDatabaseCart(Request $request)
+    {
+        $user = Auth::user();
+
+        if ($request->has('products')) {
+            foreach ($request->products as $id => $data) {
+                $cartItem = CartItem::where('user_id', $user->id)
+                    ->where('id', $id)
+                    ->first();
+
+                if ($cartItem && isset($data['quantity'])) {
+                    if ($data['quantity'] > 0) {
+                        $cartItem->quantity = $data['quantity'];
+                        $cartItem->save();
+                    } else {
+                        $cartItem->delete();
+                    }
+                }
+            }
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Cart updated successfully!');
+    }
+
+    private function updateSessionCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+
+        if ($request->has('products')) {
+            foreach ($request->products as $id => $data) {
+                if (isset($cart[$id])) {
+                    $cart[$id] = $data['quantity'];
+                }
+            }
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Cart updated successfully!');
+    }
+
+    // دالة لتحويل سلة Session إلى سلة قاعدة بيانات عند تسجيل الدخول
+    public function migrateSessionToDatabase()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            $sessionCart = session()->get('cart', []);
+
+            foreach ($sessionCart as $productId => $quantity) {
+                $existingCartItem = CartItem::where('user_id', $user->id)
+                    ->where('product_id', $productId)
+                    ->first();
+
+                if ($existingCartItem) {
+                    $existingCartItem->quantity += $quantity;
+                    $existingCartItem->save();
+                } else {
+                    $product = Product::find($productId);
+                    if ($product) {
+                        CartItem::create([
+                            'user_id' => $user->id,
+                            'product_id' => $productId,
+                            'quantity' => $quantity,
+                            'price' => $product->price
+                        ]);
+                    }
+                }
+            }
+
+            // مسح سلة Session بعد التحويل
+            session()->forget('cart');
+            
+            return true;
+        }
+        
+        return false;
+    }
 }

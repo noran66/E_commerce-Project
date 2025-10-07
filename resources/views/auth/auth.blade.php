@@ -301,11 +301,11 @@
       if (loginForm.style.display === 'none') {
         loginForm.style.display = 'block';
         registerForm.style.display = 'none';
-        title.innerText = 'تسجيل الدخول';
+        title.innerText = 'Login';
       } else {
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
-        title.innerText = 'إنشاء حساب جديد';
+        title.innerText = 'Register';
       }
     }
   </script>

@@ -4,36 +4,48 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    // عرض الصفحة
-    public function showForm()
+    // عرض صفحة تسجيل الدخول
+    public function showLoginForm()
     {
-        return view('auth.auth');
+        return view('auth.login');
     }
 
     // تسجيل الدخول
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/user-dashboard')->with('success', 'تم تسجيل الدخول بنجاح');
+            $request->session()->regenerate();
+            return redirect()->intended('/user-dashboard');
         }
 
-        return back()->with('error', 'بيانات الدخول غير صحيحة')->withInput();
+        return back()->withErrors([
+            'email' => 'Invalid credentials.',
+        ]);
     }
 
-    // التسجيل
+    // عرض صفحة التسجيل
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    // تسجيل مستخدم جديد
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:6', 'confirmed'],
         ]);
 
         $user = User::create([
@@ -44,13 +56,22 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/user-dashboard')->with('success', 'تم إنشاء الحساب وتسجيل الدخول');
+        return redirect('/user-dashboard');
+    }
+
+    // صفحة Dashboard
+    public function dashboard()
+    {
+        $user = Auth::user();
+        return view('user-dashboard', compact('user'));
     }
 
     // تسجيل الخروج
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect('/auth')->with('success', 'تم تسجيل الخروج');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
     }
 }

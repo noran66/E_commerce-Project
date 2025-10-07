@@ -56,23 +56,14 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 
 
 
-Route::get('/auth', [AuthController::class, 'showForm'])->name('auth');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::middleware('auth')->get('/user-dashboard', [AuthController::class, 'dashboard'])->name('user.dashboard');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-
-
-Route::get('/user-dashboard', function () {
-    $user = Auth::user();
-    return view('user-dashboard', compact('user'));
-})->name('user-dashboard')->middleware('auth');
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';

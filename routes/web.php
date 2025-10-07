@@ -7,6 +7,9 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+
 
 // الصفحة الرئيسية
 Route::get('/', function () {
@@ -50,3 +53,26 @@ Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name(
 
 Route::post('/subscribe', [SubscriberController::class, 'store'])->name('subscribe.store');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+
+Route::get('/auth', [AuthController::class, 'showForm'])->name('auth');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+
+
+Route::get('/user-dashboard', function () {
+    $user = Auth::user();
+    return view('user-dashboard', compact('user'));
+})->name('user-dashboard')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

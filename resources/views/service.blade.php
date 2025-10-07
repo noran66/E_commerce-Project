@@ -377,10 +377,10 @@
 					<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
 
 					<ul class="list-unstyled custom-social">
-						<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-						<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-						<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-						<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+						<li><a href="https://www.facebook.com/share/1BSnRypSHb/"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+						<li><a href="https://x.com/FaroukSameh6?t=wgQCfuSRYHxXxIfiW-5EHg&s=09"><span class="fa fa-brands fa-twitter"></span></a></li>
+						<li><a href="https://www.instagram.com/farouksameh01?igsh=MTJvZWxwOGk0M3Jlag=="><span class="fa fa-brands fa-instagram"></span></a></li>
+						<li><a href="https://www.linkedin.com/in/farouk-sameh-ba4486181?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><span class="fa fa-brands fa-linkedin"></span></a></li>
 					</ul>
 				</div>
 

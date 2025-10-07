@@ -41,6 +41,7 @@
 					<li><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
 					<li><a class="nav-link" href="{{ url('/blog') }}">Blog</a></li>
 					<li><a class="nav-link" href="{{ url('/contact') }}">Contact us</a></li>
+
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -469,24 +470,68 @@
 
 			<div class="row">
 				<div class="col-lg-8">
+
+					
+
+					@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+
+
 					<div class="subscription-form">
 						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}"
 									alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
 
-						<form action="#" class="row g-3">
+						<form action="{{ route('subscribe.store') }}" method="POST" class="row g-3">
+							@csrf
 							<div class="col-auto">
-								<input type="text" class="form-control" placeholder="Enter your name">
+								<input 
+									type="text" 
+									name="name" 
+									class="form-control @error('name') is-invalid @enderror" 
+									placeholder="Enter your name" 
+									value="{{ old('name') }}"
+									required
+								>
+								@error('name')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+
 							<div class="col-auto">
-								<input type="email" class="form-control" placeholder="Enter your email">
+								<input 
+									type="email" 
+									name="email" 
+									class="form-control @error('email') is-invalid @enderror" 
+									placeholder="Enter your email" 
+									value="{{ old('email') }}"
+									required
+								>
+								@error('email')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+
 							<div class="col-auto">
-								<button class="btn btn-primary">
+								<button type="submit" class="btn btn-primary">
 									<span class="fa fa-paper-plane"></span>
 								</button>
 							</div>
-						</form>
 
+							@if (session('success'))
+								<div class="col-12">
+									<div class="alert alert-success mt-2 mb-0 p-2 text-center">
+										{{ session('success') }}
+									</div>
+								</div>
+							@endif
+						</form>
 					</div>
 				</div>
 			</div>
@@ -552,10 +597,7 @@
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;
 							<script>
 								document.write(new Date().getFullYear());
-							</script>. All Rights Reserved. &mdash;
-							Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a
-								hreff="https://themewagon.com">ThemeWagon</a>
-							<!-- License information: https://untree.co/license/ -->
+							</script>. All Rights Reserved. &mdash; Designed with love by team2 
 						</p>
 					</div>
 

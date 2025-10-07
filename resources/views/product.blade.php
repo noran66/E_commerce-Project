@@ -47,11 +47,11 @@
                     <span class="text-warning fs-5">
                         @for($i = 0; $i < 5; $i++)
                             @if($i < $product->reviews->avg('rating'))
-                                &#9733;
+                            &#9733;
                             @else
-                                &#9734;
+                            &#9734;
                             @endif
-                        @endfor
+                            @endfor
                     </span>
                     <span class="ms-2 text-muted">({{ $product->reviews->count() }} Reviews)</span>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="mb-3">
                     <h4 class="text-success d-inline">${{ $product->price }}</h4>
                     @if($product->old_price)
-                        <del class="text-muted ms-2">${{ $product->old_price }}</del>
+                    <del class="text-muted ms-2">${{ $product->old_price }}</del>
                     @endif
                 </div>
 
@@ -68,9 +68,9 @@
                 <p class="mb-3">
                     <strong>Status:</strong>
                     @if($product->stock > 0)
-                        <span class="text-success">In Stock</span>
+                    <span class="text-success">In Stock</span>
                     @else
-                        <span class="text-danger">Out of Stock</span>
+                    <span class="text-danger">Out of Stock</span>
                     @endif
                 </p>
 
@@ -78,8 +78,11 @@
                 <div class="mb-3">
                     <strong>Color:</strong>
                     @foreach($product->colors as $color)
-                        <button class="color-btn" style="background-color: {{ $color->code }};"
-                            data-color="{{ $color->name }}"></button>
+                    <button 
+                        class="color-btn" 
+                        style="background-color: {{ $color->code ?? '#ffffff' }};" 
+                        data-color="{{ $color->name ?? 'Unknown' }}">
+                    </button>
                     @endforeach
                     <input type="hidden" id="selectedColor" name="color" value="">
                 </div>
@@ -133,15 +136,15 @@
         <div class="mt-4">
             <h4>Reviews</h4>
             @foreach($product->reviews as $review)
-                <div class="mb-3 border-bottom pb-2">
-                    <strong>{{ $review->user->name }}</strong>
-                    <div class="text-warning">
-                        @for($i = 0; $i < $review->rating; $i++)
-                            &#9733;
+            <div class="mb-3 border-bottom pb-2">
+                <strong>{{ $review->user->name }}</strong>
+                <div class="text-warning">
+                    @for($i = 0; $i < $review->rating; $i++)
+                        &#9733;
                         @endfor
-                    </div>
-                    <p>{{ $review->comment }}</p>
                 </div>
+                <p>{{ $review->comment }}</p>
+            </div>
             @endforeach
         </div>
 
@@ -150,16 +153,16 @@
             <h4>Similar Products</h4>
             <div class="row">
                 @foreach($similarProducts as $sp)
-                    <div class="col-md-3 mb-3">
-                        <div class="card h-100 shadow-sm">
-                            <img src="{{ asset('assets/images/' . $sp->image) }}" class="card-img-top"
-                                alt="{{ $sp->name }}">
-                            <div class="card-body text-center">
-                                <h6 class="card-title">{{ $sp->name }}</h6>
-                                <p class="text-success mb-0">${{ $sp->price }}</p>
-                            </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <img src="{{ asset('assets/images/' . $sp->image) }}" class="card-img-top"
+                            alt="{{ $sp->name }}">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">{{ $sp->name }}</h6>
+                            <p class="text-success mb-0">${{ $sp->price }}</p>
                         </div>
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>

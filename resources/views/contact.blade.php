@@ -108,7 +108,7 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
-										<p>43 Raymouth Rd. Baltemoer, London 3910</p>
+										<p>Cairo,Egypt</p>
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -121,7 +121,7 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
-										<p>info@yourdomain.com</p>
+										<p>farouksameh105@gmail.com</p>
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
@@ -134,39 +134,60 @@
 										</svg>
 									</div> <!-- /.icon -->
 									<div class="service-contents">
-										<p>+1 294 3925 3939</p>
+										<p>01000391557</p>
 									</div> <!-- /.service-contents-->
 								</div> <!-- /.service -->
 							</div>
 						</div>
 
-						<form>
+						<form action="{{ route('contact.store') }}" method="POST">
+    						@csrf
 							<div class="row">
 								<div class="col-6">
 									<div class="form-group">
 										<label class="text-black" for="fname">First name</label>
-										<input type="text" class="form-control" id="fname">
+										<input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" id="fname" value="{{ old('first_name') }}">
+										@error('first_name')
+											<div class="text-danger small mt-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 								<div class="col-6">
 									<div class="form-group">
 										<label class="text-black" for="lname">Last name</label>
-										<input type="text" class="form-control" id="lname">
+										<input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" id="lname" value="{{ old('last_name') }}">
+										@error('last_name')
+											<div class="text-danger small mt-1">{{ $message }}</div>
+										@enderror
 									</div>
 								</div>
 							</div>
+
 							<div class="form-group">
 								<label class="text-black" for="email">Email address</label>
-								<input type="email" class="form-control" id="email">
+								<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ old('email') }}">
+								@error('email')
+									<div class="text-danger small mt-1">{{ $message }}</div>
+								@enderror
 							</div>
 
 							<div class="form-group mb-5">
 								<label class="text-black" for="message">Message</label>
-								<textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+								<textarea name="message" class="form-control @error('message') is-invalid @enderror" id="message" cols="30" rows="5">{{ old('message') }}</textarea>
+								@error('message')
+									<div class="text-danger small mt-1">{{ $message }}</div>
+								@enderror
 							</div>
 
 							<button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
+
+							@if (session('success'))
+								<div class="alert alert-success mt-3">
+									{{ session('success') }}
+								</div>
+							@endif
 						</form>
+
 
 					</div>
 
@@ -194,22 +215,69 @@
 
 			<div class="row">
 				<div class="col-lg-8">
-					<div class="subscription-form">
-						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
 
-						<form action="#" class="row g-3">
+					
+
+					@if(session('success'))
+					<div class="alert alert-success mt-3">
+						{{ session('success') }}
+					</div>
+					@endif
+
+
+					<div class="subscription-form">
+						<h3 class="d-flex align-items-center"><span class="me-1"><img src="{{ asset('assets/images/envelope-outline.svg') }}"
+									alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
+
+						<form action="{{ route('subscribe.store') }}" method="POST" class="row g-3">
+							@csrf
 							<div class="col-auto">
-								<input type="text" class="form-control" placeholder="Enter your name">
+								<input 
+									type="text" 
+									name="name" 
+									class="form-control @error('name') is-invalid @enderror" 
+									placeholder="Enter your name" 
+									value="{{ old('name') }}"
+									required
+								>
+								@error('name')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+
 							<div class="col-auto">
-								<input type="email" class="form-control" placeholder="Enter your email">
+								<input 
+									type="email" 
+									name="email" 
+									class="form-control @error('email') is-invalid @enderror" 
+									placeholder="Enter your email" 
+									value="{{ old('email') }}"
+									required
+								>
+								@error('email')
+									<div class="invalid-feedback d-block">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
+
 							<div class="col-auto">
-								<button class="btn btn-primary">
+								<button type="submit" class="btn btn-primary">
 									<span class="fa fa-paper-plane"></span>
 								</button>
 							</div>
+
+							@if (session('success'))
+								<div class="col-12">
+									<div class="alert alert-success mt-2 mb-0 p-2 text-center">
+										{{ session('success') }}
+									</div>
+								</div>
+							@endif
 						</form>
+
 
 					</div>
 				</div>
@@ -273,7 +341,7 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a hreff="https://themewagon.com">ThemeWagon</a> <!-- License information: https://untree.co/license/ -->
+							</script>. All Rights Reserved. &mdash; Designed with love by team2 <!-- License information: https://untree.co/license/ -->
 						</p>
 					</div>
 

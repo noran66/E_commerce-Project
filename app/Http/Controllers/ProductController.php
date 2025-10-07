@@ -13,5 +13,10 @@ class ProductController extends Controller
     $similarProducts = Product::where('id', '!=', $id)->take(4)->get();
     return view('product', compact('product', 'similarProducts'));
 }
+    public function shop()
+{
+    $products = \App\Models\Product::all();
+    return view('shop', compact('products'));
+}
 
 }

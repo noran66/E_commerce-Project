@@ -12,37 +12,60 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function add(Request $request)
-    {
-        $user = Auth::user(); // لازم يكون اليوزر مسجل دخول
-        $productId = $request->product_id;
-        $quantity = $request->quantity ?? 1;
+{
+    $cart = session()->get('cart', []);
+    $productId = $request->input('product_id');
+    $quantity = $request->input('quantity', 1);
 
-      $cartItem = CartItem::where('user_id', $user->id)
-    ->where('product_id', $productId)
-    ->first();
+    if(isset($cart[$productId])) {
+        $cart[$productId] += $quantity;
+    } else {
+        $cart[$productId] = $quantity;
+    }
 
-if ($cartItem) {
-    // لو موجود بالفعل، نزيد الكمية
-    $cartItem->quantity += $quantity;
-    $cartItem->save();
-} else {
-    // لو مش موجود، نضيفه جديد
-    $cartItem = CartItem::create([
-        'user_id' => $user->id,
-        'product_id' => $productId,
-        'quantity' => $quantity,
-    ]);
+    session()->put('cart', $cart);
+
+    return redirect()->route('cart.index')->with('success', 'Product added to cart!');
 }
 
+   public function index()
+{
+    // إذا كنت تستخدم session
+    $cart = session()->get('cart', []);
+    $cartItems = [];
 
-        return redirect()->route('cart');
+    foreach ($cart as $productId => $quantity) {
+        $product = \App\Models\Product::find($productId);
+        if ($product) {
+            $cartItems[] = (object)[
+                'product' => $product,
+                'quantity' => $quantity,
+            ];
+        }
     }
 
-    public function index()
-    {
-        $user = Auth::user();
-        $cartItems = CartItem::with('product')->where('user_id', $user->id)->get();
+    return view('cart', compact('cartItems'));
+}
+public function remove($id)
+{
+    $cart = session()->get('cart', []);
+    unset($cart[$id]);
+    session()->put('cart', $cart);
+    return redirect()->route('cart.index')->with('success', 'Product removed from cart!');
+}
+public function update(Request $request)
+{
+    $cart = session()->get('cart', []);
 
-        return view('cart', compact('cartItems'));
+    if ($request->has('products')) {
+        foreach ($request->products as $id => $data) {
+            if (isset($cart[$id])) {
+                $cart[$id] = $data['quantity'];
+            }
+        }
+        session()->put('cart', $cart);
     }
+
+    return redirect()->route('cart.index')->with('success', 'Cart updated successfully!');
+}
 }

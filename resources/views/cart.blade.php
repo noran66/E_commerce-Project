@@ -24,7 +24,39 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 	<title>Furni for Furniture and Interior Design Websites </title>
 </head>
+<style>
+.btn-custom {
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease;
+}
 
+.btn-light-bg {
+    background-color: black;
+	text-decoration: none;
+}
+
+.btn-light-bg:hover {
+    background-color: black;
+    transform: scale(1.005);
+	color: #fff;
+	text-decoration: none;
+}
+
+.btn-dark-bg {
+    background: linear-gradient(135deg, #111, #333);
+}
+
+.btn-dark-bg:hover {
+    background: linear-gradient(135deg, #222, #000);
+    transform: scale(1.005);
+}
+
+.hover-scale {
+    transition: all 0.3s ease;
+}
+
+</style>
 <body>
 
 	<!-- Start Header/Navigation -->
@@ -78,110 +110,79 @@
 	</div>
 	<!-- End Hero Section -->
 
-	<div class="untree_co-section before-footer-section">
-		<div class="container">
-			<div class="row mb-5">
-				<form class="col-md-12" method="post">
-					<div class="site-blocks-table">
-						<table class="table">
-							<thead>
-								<tr>
-									<th class="product-thumbnail">Image</th>
-									<th class="product-name">Product</th>
-									<th class="product-price">Price</th>
-									<th class="product-quantity">Quantity</th>
-									<th class="product-total">Total</th>
-									<th class="product-remove">Remove</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($cartItems as $item)
-									<tr>
-										<td class="product-thumbnail">
-											<img src="{{ asset('assets/images/' . $item->product->image) }}"
-												class="img-fluid">
-										</td>
-										<td class="product-name">
-											<h2 class="h5 text-black">{{ $item->product->name }}</h2>
-										</td>
-										<td>${{ $item->product->price }}</td>
-										<td>{{ $item->quantity }}</td>
-										<td>${{ $item->product->price * $item->quantity }}</td>
-										<td>
-											<form action="{{ route('cart.remove', $item->id) }}" method="POST">
-												@csrf
-												@method('DELETE')
-												<button type="submit" class="btn btn-black btn-sm">X</button>
-											</form>
-										</td>
-									</tr>
-								@endforeach
-							</tbody>
-						</table>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div class="untree_co-section before-footer-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="site-blocks-table">
 
+                    {{-- form تحديث الكارت --}}
+                    <form action="{{ route('cart.update') }}" method="POST">
+                        @csrf
+                        <table class="table align-middle text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($cartItems as $item)
+                                    <tr>
+                                        <td>
+                                            <img src="{{ asset('assets/images/' . $item->product->image) }}" 
+                                                 alt="{{ $item->product->name }}" 
+                                                 class="img-fluid rounded" 
+                                                 style="max-width: 70px;">
+                                        </td>
+                                        <td class="text-start">
+                                            <strong>{{ $item->product->name }}</strong>
+                                        </td>
+                                        <td>${{ number_format($item->product->price, 2) }}</td>
+                                        <td>
+                                            <input type="hidden" name="products[{{ $item->product->id }}][id]" value="{{ $item->product->id }}">
+                                            <input type="number" 
+                                                   name="products[{{ $item->product->id }}][quantity]" 
+                                                   value="{{ $item->quantity }}" 
+                                                   min="1"
+                                                   class="form-control text-center mx-auto" 
+                                                   style="width:80px;">
+                                        </td>
+                                        <td>${{ number_format($item->product->price * $item->quantity, 2) }}</td>
+                                        <td>
+                                            {{-- بدل form داخل form --}}
+                                            <a href="{{ route('cart.remove.get', $item->product->id) }}" 
+												class="btn btn-danger rounded-pill px-3 py-1"
+												onclick="return confirm('Remove this item?')">
+												🗑 Remove
+											</a>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
-	<div class="row">
-		<div class="col-md-6">
-			<div class="row mb-5">
-				<div class="col-md-6 mb-3 mb-md-0">
-					<button class="btn btn-black btn-sm btn-block">Update Cart</button>
-				</div>
-				<div class="col-md-6">
-					<button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<label class="text-black h4" for="coupon">Coupon</label>
-					<p>Enter your coupon code if you have one.</p>
-				</div>
-				<div class="col-md-8 mb-3 mb-md-0">
-					<input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-				</div>
-				<div class="col-md-4">
-					<button class="btn btn-black">Apply Coupon</button>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6 pl-5">
-			<div class="row justify-content-end">
-				<div class="col-md-7">
-					<div class="row">
-						<div class="col-md-12 text-right border-bottom mb-5">
-							<h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-						</div>
-					</div>
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<span class="text-black">Subtotal</span>
-						</div>
-						<div class="col-md-6 text-right">
-							<strong class="text-black">$230.00</strong>
-						</div>
-					</div>
-					<div class="row mb-5">
-						<div class="col-md-6">
-							<span class="text-black">Total</span>
-						</div>
-						<div class="col-md-6 text-right">
-							<strong class="text-black">$230.00</strong>
-						</div>
-					</div>
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+							<a href="{{ url('/shop') }}" 
+							class="btn-custom btn-light-bg rounded-pill px-4 py-2 fw-semibold shadow-sm hover-scale">
+								<i class="bi bi-arrow-left me-2"></i> Continue Shopping
+							</a>
 
-					<div class="row">
-						<div class="col-md-12">
-							<button class="btn btn-black btn-lg py-3 btn-block"
-								onclick="window.location='checkout.html'">Proceed To Checkout</button>
+							<button type="submit" 
+									class="btn-custom btn-dark-bg rounded-pill px-4 py-2 fw-semibold shadow-sm hover-scale">
+								<i class="bi bi-arrow-repeat me-2"></i> Update Cart
+							</button>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 	</div>
 	</div>
 	</div>

@@ -50,7 +50,7 @@
 				</ul>
 
 				<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-					<li><a class="nav-link" href="/login"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
+					<li><a class="nav-link" href="#"><img src="{{ asset('assets/images/user.svg') }}"></a></li>
 					<li><a class="nav-link" href="{{ url('/cart') }}"><img src="{{ asset('assets/images/cart.svg') }}"></a></li>
 				</ul>
 			</div>
@@ -79,125 +79,34 @@
 
 
 	<div class="untree_co-section product-section before-footer-section">
-		<div class="container">
-			<div class="row">
-
-				<!-- Start Column 1 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 1 -->
-
-				<!-- Start Column 2 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 2 -->
-
-				<!-- Start Column 3 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Kruzo Aero Chair</h3>
-						<strong class="product-price">$78.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 3 -->
-
-				<!-- Start Column 4 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Ergonomic Chair</h3>
-						<strong class="product-price">$43.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 4 -->
-
-
-				<!-- Start Column 1 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 1 -->
-
-				<!-- Start Column 2 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-1.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Nordic Chair</h3>
-						<strong class="product-price">$50.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 2 -->
-
-				<!-- Start Column 3 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-2.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Kruzo Aero Chair</h3>
-						<strong class="product-price">$78.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 3 -->
-
-				<!-- Start Column 4 -->
-				<div class="col-12 col-md-4 col-lg-3 mb-5">
-					<a class="product-item" href="#">
-						<img src="{{ asset('assets/images/product-3.png') }}" class="img-fluid product-thumbnail">
-						<h3 class="product-title">Ergonomic Chair</h3>
-						<strong class="product-price">$43.00</strong>
-
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
-					</a>
-				</div>
-				<!-- End Column 4 -->
-
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            @forelse($products as $product)
+                <div class="col-12 col-md-4 col-lg-3 mb-5">
+                    <div class="product-item">
+                        <img src="{{ asset('assets/images/' . $product->image) }}" class="img-fluid product-thumbnail">
+                        <h3 class="product-title">{{ $product->name }}</h3>
+                        <strong class="product-price">${{ $product->price }}</strong>
+                        <form action="{{ route('cart.add') }}" method="POST" style="display:inline;">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product['id']}}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="icon-cross">
+                                <img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid" alt="Add to Cart">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        لا يوجد منتجات حاليا!
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</div>
 
 
 	<!-- Start Footer Section -->
@@ -336,7 +245,8 @@
 					<div class="col-lg-6">
 						<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>
 								document.write(new Date().getFullYear());
-							</script>. All Rights Reserved. &mdash; Designed with love by team2 
+							</script>. All Rights Reserved. &mdash; Designed with love by team 2
+						</p>
 					</div>
 
 					<div class="col-lg-6 text-center text-lg-end">

@@ -327,9 +327,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 							<script>
 								document.write(new Date().getFullYear());
 							</script>. All Rights Reserved. &mdash;
-							Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a
-								hreff="https://themewagon.com">ThemeWagon</a>
-							<!-- License information: https://untree.co/license/ -->
+							Designed with love by team 2
 						</p>
 					</div>
 

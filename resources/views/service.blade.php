@@ -197,9 +197,7 @@
 						<h3 class="product-title">Nordic Chair</h3>
 						<strong class="product-price">$50.00</strong>
 
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
+						
 					</a>
 				</div>
 				<!-- End Column 2 -->
@@ -211,9 +209,7 @@
 						<h3 class="product-title">Kruzo Aero Chair</h3>
 						<strong class="product-price">$78.00</strong>
 
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
+					
 					</a>
 				</div>
 				<!-- End Column 3 -->
@@ -225,9 +221,7 @@
 						<h3 class="product-title">Ergonomic Chair</h3>
 						<strong class="product-price">$43.00</strong>
 
-						<span class="icon-cross">
-							<img src="{{ asset('assets/images/cross.svg') }}" class="img-fluid">
-						</span>
+					
 					</a>
 				</div>
 				<!-- End Column 4 -->

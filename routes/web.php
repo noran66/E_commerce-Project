@@ -31,6 +31,7 @@ Route::get('/blog', function () {
 });
 Route::get('/service', [ProductController::class, 'service']);
 
+Route::get('/shop', [ProductController::class, 'index'])->name('shop');
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
 

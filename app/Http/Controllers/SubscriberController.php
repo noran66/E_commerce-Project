@@ -9,7 +9,6 @@ class SubscriberController extends Controller
 {
     public function store(Request $request)
     {
-        // ✅ التحقق من المدخلات
        $validated = $request->validate([
             'name'  => 'required|string|min:3|max:50',
             'email' => 'required|email|unique:subscribers,email',
@@ -18,11 +17,9 @@ class SubscriberController extends Controller
             'email.unique' => 'This email is already subscribed!',
         ]);
 
-        // ✅ حفظ البيانات
         
         Subscriber::create($validated);
 
-        // ✅ الرد بعد الحفظ
         return redirect()->back()->with('success', 'Thank you for subscribing!');
     }
 }

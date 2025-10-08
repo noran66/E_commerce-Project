@@ -10,7 +10,6 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    // عرض صفحة تسجيل الدخول
     public function showLoginForm()
     {
         return view('auth.login');
@@ -26,7 +25,6 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
         
-        // تحويل سلة Session إلى قاعدة بيانات
         $cartController = new CartController();
         $cartController->migrateSessionToDatabase();
 
@@ -38,13 +36,11 @@ class AuthController extends Controller
     ]);
 }
 
-    // عرض صفحة التسجيل
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    // تسجيل مستخدم جديد
     public function register(Request $request)
     {
         $request->validate([
@@ -64,7 +60,6 @@ class AuthController extends Controller
         return redirect('/user-dashboard');
     }
 
-    // صفحة Dashboard
     public function dashboard()
 {
     $user = Auth::user();
@@ -75,7 +70,6 @@ class AuthController extends Controller
     return view('user-dashboard', compact('user', 'cartItems'));
 }
 
-    // تسجيل الخروج
     public function logout(Request $request)
     {
         Auth::logout();

@@ -11,7 +11,6 @@ class ContactController extends Controller
 {
     public function store(Request $request)
     {
-        // ✅ Validation
         $validated = $request->validate([
             'first_name' => 'required|string|max:50',
             'last_name'  => 'required|string|max:50',
@@ -19,14 +18,14 @@ class ContactController extends Controller
             'message'    => 'required|string|max:1000',
         ]);
 
-        // ✅ Save to DB
+        //  Save to DB
         Contact::create($validated);
 
-        // ✅ Send email
+        //  Send email
         $adminEmail = 'farouksameh105@gmail.com'; //email that will receive the contact messages
         Mail::to($adminEmail)->send(new ContactMail($validated));
 
-        // ✅ Redirect with message
+        //  Redirect with message
         return back()->with('success', 'Your message has been sent successfully!');
     }
 }

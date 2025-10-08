@@ -16,11 +16,9 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
         if (Auth::check()) {
             return $this->addToDatabaseCart($request);
         } else {
-            // إذا كان زائر، استخدم الـ Session
             return $this->addToSessionCart($request);
         }
     }
@@ -31,17 +29,14 @@ class CartController extends Controller
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity', 1);
 
-        // البحث عن عنصر موجود في السلة
         $existingCartItem = CartItem::where('user_id', $user->id)
             ->where('product_id', $productId)
             ->first();
 
         if ($existingCartItem) {
-            // تحديث الكمية إذا كان المنتج موجود بالفعل
             $existingCartItem->quantity += $quantity;
             $existingCartItem->save();
         } else {
-            // إضافة منتج جديد إلى السلة
             $product = Product::find($productId);
             
             CartItem::create([
@@ -74,11 +69,9 @@ class CartController extends Controller
 
     public function index()
     {
-        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
         if (Auth::check()) {
             return $this->showDatabaseCart();
         } else {
-            // إذا كان زائر، استخدم الـ Session
             return $this->showSessionCart();
         }
     }
@@ -102,7 +95,7 @@ class CartController extends Controller
             $product = Product::find($productId);
             if ($product) {
                 $cartItems[] = (object)[
-                    'id' => $productId, // استخدام productId كمعرف مؤقت للـ Session
+                    'id' => $productId, 
                     'product' => $product,
                     'quantity' => $quantity,
                 ];
@@ -114,11 +107,9 @@ class CartController extends Controller
 
     public function remove($id)
     {
-        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
         if (Auth::check()) {
             return $this->removeFromDatabaseCart($id);
         } else {
-            // إذا كان زائر، استخدم الـ Session
             return $this->removeFromSessionCart($id);
         }
     }
@@ -146,11 +137,9 @@ class CartController extends Controller
 
     public function update(Request $request)
     {
-        // إذا كان المستخدم مسجل دخول، استخدم قاعدة البيانات
         if (Auth::check()) {
             return $this->updateDatabaseCart($request);
         } else {
-            // إذا كان زائر، استخدم الـ Session
             return $this->updateSessionCart($request);
         }
     }
@@ -195,7 +184,6 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Cart updated successfully!');
     }
 
-    // دالة لتحويل سلة Session إلى سلة قاعدة بيانات عند تسجيل الدخول
     public function migrateSessionToDatabase()
     {
         if (Auth::check()) {
@@ -223,7 +211,6 @@ class CartController extends Controller
                 }
             }
 
-            // مسح سلة Session بعد التحويل
             session()->forget('cart');
             
             return true;

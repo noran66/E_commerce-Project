@@ -175,7 +175,7 @@
             <!-- Member 3 -->
             <div class="team-member" style="flex: 1 1 18%; min-width: 200px;">
                 <img src="{{ asset('assets/images/person-1.jpg') }}" class="img-fluid mb-3 rounded-circle">
-                <h3><a href="#"><span>Shahd</span></a></h3>
+                <h3><a href="https://www.linkedin.com/in/shahd-emad-921394322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><span>Shahd</span></a></h3>
                 <span class="d-block position mb-3">CEO, Founder, Atty.</span>
             </div>
 

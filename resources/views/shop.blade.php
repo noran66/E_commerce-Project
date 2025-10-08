@@ -88,13 +88,6 @@
 					<h3 class="product-title mb-1" style="font-size:1.2rem;">{{ $product->name }}</h3>
 					<strong class="product-price mb-2" style="font-size:1.2rem;">${{ $product->price }}</strong>
 					<form action="{{ route('cart.add') }}" method="POST" style="display:inline;">
-                <div class="col-12 col-md-4 col-lg-3 mb-5">
-                    <div class="product-item">
-						<a href="{{ route('product.show', $product->id) }}">
-                        <img src="{{ asset('assets/images/' . $product->image) }}" class="img-fluid product-thumbnail">
-                        <h3 class="product-title">{{ $product->name }}</h3>
-                        <strong class="product-price">${{ $product->price }}</strong>
-                        <form action="{{ route('cart.add') }}" method="POST" style="display:inline;">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product['id']}}">
                             <input type="hidden" name="quantity" value="1">

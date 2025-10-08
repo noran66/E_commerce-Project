@@ -107,18 +107,8 @@
                     <a href="{{ route('checkout', $product->id) }}" class="btn btn-outline-success btn-lg">Buy Now</a>
                 </div>
 
-                <!-- خيارات إضافية -->
-                <div class="mb-3">
-                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
-                        <i class="bi bi-bar-chart me-1"></i> Compare
-                    </a>
-                    <a href="#" class="btn btn-outline-secondary btn-sm me-2">
-                        <i class="bi bi-heart me-1"></i> Add to Wishlist
-                    </a>
-                    <a href="#" class="btn btn-outline-secondary btn-sm">
-                        <i class="bi bi-rulers me-1"></i> Size Chart
-                    </a>
-                </div>
+                
+               
 
                 <!-- الشحن والتوصيل -->
                 <p><i class="bi bi-truck me-2"></i>Free worldwide shipping on all orders over $200</p>

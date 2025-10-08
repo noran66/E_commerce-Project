@@ -149,70 +149,54 @@
 
 	<!-- Start Team Section -->
 	<div class="untree_co-section">
-		<div class="container">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-5 mx-auto text-center">
+                <h2 class="section-title">Our Team</h2>
+            </div>
+        </div>
 
-			<div class="row mb-5">
-				<div class="col-lg-5 mx-auto text-center">
-					<h2 class="section-title">Our Team</h2>
-				</div>
-			</div>
+        <div class="row justify-content-center text-center flex-wrap" style="gap: 20px;">
 
-			<div class="row">
+            <!-- Member 1 -->
+            <div class="team-member" style="flex: 1 1 18%; min-width: 200px;">
+                <img src="{{ asset('assets/images/person_1.jpg') }}" class="img-fluid mb-3 rounded-circle">
+                <h3><a href="https://www.linkedin.com/in/farouk-sameh-ba4486181?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><span>Farouk</span> Sameh</a></h3>
+                <span class="d-block position mb-3">CEO, Founder, Atty.</span>
+            </div>
 
-				<!-- Start Column 1 -->
-				<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
-					<img src="{{ asset('assets/images/person_1.jpg') }}" class="img-fluid mb-5">
-					<h3 clas><a href="#"><span class="">Lawson</span> Arnold</a></h3>
-					<span class="d-block position mb-4">CEO, Founder, Atty.</span>
-					<p>Separated they live in.
-						Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
-				</div>
-				<!-- End Column 1 -->
+            <!-- Member 2 -->
+            <div class="team-member" style="flex: 1 1 18%; min-width: 200px;">
+                <img src="{{ asset('assets/images/person-1.jpg') }}" class="img-fluid mb-3 rounded-circle">
+                <h3><a href="https://www.linkedin.com/in/noran-mohamed-94895028a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><span>Nouran</span></a></h3>
+                <span class="d-block position mb-3">CEO, Founder, Atty.</span>
+            </div>
 
-				<!-- Start Column 2 -->
-				<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
-					<img src="{{ asset('assets/images/person_2.jpg') }}" class="img-fluid mb-5">
+            <!-- Member 3 -->
+            <div class="team-member" style="flex: 1 1 18%; min-width: 200px;">
+                <img src="{{ asset('assets/images/person-1.jpg') }}" class="img-fluid mb-3 rounded-circle">
+                <h3><a href="#"><span>Shahd</span></a></h3>
+                <span class="d-block position mb-3">CEO, Founder, Atty.</span>
+            </div>
 
-					<h3 clas><a href="#"><span class="">Jeremy</span> Walker</a></h3>
-					<span class="d-block position mb-4">CEO, Founder, Atty.</span>
-					<p>Separated they live in.
-						Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
+            <!-- Member 4 -->
+            <div class="team-member" style="flex: 1 1 18%; min-width: 200px;">
+                <img src="{{ asset('assets/images/person_4.jpg') }}" class="img-fluid mb-3 rounded-circle">
+                <h3><a href="https://www.linkedin.com/in/kholoud-mohammed-70562a375?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><span>Kholoud</span></a></h3>
+                <span class="d-block position mb-3">CEO, Founder, Atty.</span>
+            </div>
 
-				</div>
-				<!-- End Column 2 -->
+            <!-- Member 5 -->
+            <div class="team-member" style="flex: 1 1 18%; min-width: 200px;">
+                <img src="{{ asset('assets/images/person_4.jpg') }}" class="img-fluid mb-3 rounded-circle">
+                <h3><a href="https://www.linkedin.com/in/kholoud-khalid-a4b5842b4"><span>Kholoud</span></a></h3>
+                <span class="d-block position mb-3">CEO, Co-Founder, XYZ Inc.</span>
+            </div>
 
-				<!-- Start Column 3 -->
-				<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
-					<img src="{{ asset('assets/images/person_3.jpg') }}" class="img-fluid mb-5">
-					<h3 clas><a href="#"><span class="">Patrik</span> White</a></h3>
-					<span class="d-block position mb-4">CEO, Founder, Atty.</span>
-					<p>Separated they live in.
-						Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
-				</div>
-				<!-- End Column 3 -->
+        </div>
+    </div>
+</div>
 
-				<!-- Start Column 4 -->
-				<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
-					<img src="{{ asset('assets/images/person_4.jpg') }}" class="img-fluid mb-5">
-
-					<h3 clas><a href="#"><span class="">Kathryn</span> Ryan</a></h3>
-					<span class="d-block position mb-4">CEO, Founder, Atty.</span>
-					<p>Separated they live in.
-						Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-					<p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
-
-
-				</div>
-				<!-- End Column 4 -->
-
-
-
-			</div>
-		</div>
-	</div>
 	<!-- End Team Section -->
 
 
@@ -243,14 +227,19 @@
 
 										<div class="testimonial-block text-center">
 											<blockquote class="mb-5">
-												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
+													odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+													vulputate velit imperdiet dolor tempor tristique. Pellentesque
+													habitant morbi tristique senectus et netus et malesuada fames ac
+													turpis egestas. Integer convallis volutpat dui quis
+													scelerisque.&rdquo;</p>
 											</blockquote>
 
 											<div class="author-info">
 												<div class="author-pic">
-													<img src="{{ asset('assets/images/person-1.png') }}" alt="Maria Jones" class="img-fluid">
+													<img src="{{ asset('assets/images/farouk.jpg') }}" alt="Maria Jones" class="img-fluid">
 												</div>
-												<h3 class="font-weight-bold">Maria Jones</h3>
+												<h3 class="font-weight-bold">Farouk</h3>
 												<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
 											</div>
 										</div>
@@ -266,14 +255,19 @@
 
 										<div class="testimonial-block text-center">
 											<blockquote class="mb-5">
-												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
+													odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+													vulputate velit imperdiet dolor tempor tristique. Pellentesque
+													habitant morbi tristique senectus et netus et malesuada fames ac
+													turpis egestas. Integer convallis volutpat dui quis
+													scelerisque.&rdquo;</p>
 											</blockquote>
 
 											<div class="author-info">
 												<div class="author-pic">
 													<img src="{{ asset('assets/images/person-1.png') }}" alt="Maria Jones" class="img-fluid">
 												</div>
-												<h3 class="font-weight-bold">Maria Jones</h3>
+												<h3 class="font-weight-bold">Nouran</h3>
 												<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
 											</div>
 										</div>
@@ -289,14 +283,19 @@
 
 										<div class="testimonial-block text-center">
 											<blockquote class="mb-5">
-												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
+												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
+													odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+													vulputate velit imperdiet dolor tempor tristique. Pellentesque
+													habitant morbi tristique senectus et netus et malesuada fames ac
+													turpis egestas. Integer convallis volutpat dui quis
+													scelerisque.&rdquo;</p>
 											</blockquote>
 
 											<div class="author-info">
 												<div class="author-pic">
 													<img src="{{ asset('assets/images/person-1.png') }}" alt="Maria Jones" class="img-fluid">
 												</div>
-												<h3 class="font-weight-bold">Maria Jones</h3>
+												<h3 class="font-weight-bold">kholoud</h3>
 												<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
 											</div>
 										</div>
@@ -305,8 +304,62 @@
 								</div>
 							</div>
 							<!-- END item -->
+							<div class="item">
+								<div class="row justify-content-center">
+									<div class="col-lg-8 mx-auto">
 
+										<div class="testimonial-block text-center">
+											<blockquote class="mb-5">
+												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
+													odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+													vulputate velit imperdiet dolor tempor tristique. Pellentesque
+													habitant morbi tristique senectus et netus et malesuada fames ac
+													turpis egestas. Integer convallis volutpat dui quis
+													scelerisque.&rdquo;</p>
+											</blockquote>
+
+											<div class="author-info">
+												<div class="author-pic">
+													<img src="{{ asset('assets/images/person-1.png') }}" alt="Maria Jones" class="img-fluid">
+												</div>
+												<h3 class="font-weight-bold">kholoud</h3>
+												<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- End item -->
+							<div class="item">
+								<div class="row justify-content-center">
+									<div class="col-lg-8 mx-auto">
+
+										<div class="testimonial-block text-center">
+											<blockquote class="mb-5">
+												<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae
+													odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam
+													vulputate velit imperdiet dolor tempor tristique. Pellentesque
+													habitant morbi tristique senectus et netus et malesuada fames ac
+													turpis egestas. Integer convallis volutpat dui quis
+													scelerisque.&rdquo;</p>
+											</blockquote>
+
+											<div class="author-info">
+												<div class="author-pic">
+													<img src="{{ asset('assets/images/person-1.png') }}" alt="Maria Jones" class="img-fluid">
+												</div>
+												<h3 class="font-weight-bold">Shahd</h3>
+												<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- END item -->
 						</div>
+
 
 					</div>
 				</div>
